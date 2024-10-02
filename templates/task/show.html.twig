@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Task Details{% endblock %}
+
+{% block body %}
+    <h1>{{ task.title }}</h1>
+
+    <p>{{ task.description }}</p>
+
+    <a href="{{ path('task_edit', {id: task.id}) }}">Edit Task</a> |
+    <a href="{{ path('task_delete', {id: task.id}) }}" onclick="return confirm('Are you sure?')">Delete Task</a> |
+    <a href="{{ path('task_index') }}">Back to Task List</a>
+{% endblock %}
