@@ -1,8 +1,7 @@
 import { Application } from '@hotwired/stimulus';
+import TaskController from './TaskController'; // Ensure this points to your actual controller JS file
 
-const app = Application.start(); // Change this line
-// Register any custom, 3rd party controllers here
-// app.register('some_controller_name', SomeImportedController);
+const application = Application.start();
 
-// In bootstrap.js
-import './controllers';  // Ensure this is included to register controllers
+// Register your controllers here
+application.register('task', TaskController); // Use 'task' as the name for your controller
