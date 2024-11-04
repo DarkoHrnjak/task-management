@@ -3,3 +3,17 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+
+login_check: # New route for handling login
+    path: /login_check
+
+logout:
+    path: /logout
+
+homepage:
+    path: /
+    controller: App\Controller\DefaultController::index  # Adjust to the actual controller
