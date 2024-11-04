@@ -1,14 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Create New Task{% endblock %}
-
 {% block body %}
-    <h1>Create New Task</h1>
+    <div class="container mt-5">
+        <h1 class="mb-4">Create New Task</h1>
+        {{ form_start(form, {'attr': {'class': 'form'}}) }}
+        <div class="mb-3">
+            {{ form_label(form.title, 'Title', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.description, 'Description', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.dueDate, 'Due Date', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.dueDate, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.priority, 'Priority', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.priority, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.status, 'Status', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.status, {'attr': {'class': 'form-select'}}) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.assignedTo, 'Assigned To', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.assignedTo, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <button type="submit" class="btn btn-primary">Create Task</button>
+        <a href="{{ path('tasks_index') }}" class="btn btn-secondary">View Task List</a>
+        {{ form_end(form) }}
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button type="submit">Create Task</button>
-    {{ form_end(form) }}
-
-    <a href="{{ path('task_index') }}">Back to Task List</a>
+    </div>
 {% endblock %}

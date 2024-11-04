@@ -3,11 +3,40 @@
 {% block title %}Task Details{% endblock %}
 
 {% block body %}
-    <h1>{{ task.title }}</h1>
-
-    <p>{{ task.description }}</p>
-
-    <a href="{{ path('task_edit', {id: task.id}) }}">Edit Task</a> |
-    <a href="{{ path('task_delete', {id: task.id}) }}" onclick="return confirm('Are you sure?')">Delete Task</a> |
-    <a href="{{ path('task_index') }}">Back to Task List</a>
+    <div class="task-detail">
+        <h2>Task: {{ task.title }}</h2>
+        <div class="detail-item">
+            <label>Description:</label>
+            <span>{{ task.description }}</span>
+        </div>
+        <div class="detail-item">
+            <label>Due Date:</label>
+            <span>{{ task.dueDate ? task.dueDate|date('Y-m-d') : 'None' }}</span>
+        </div>
+        <div class="detail-item">
+            <label>Priority:</label>
+            <span>{{ task.priority }}</span>
+        </div>
+        <div class="detail-item">
+            <label>Status:</label>
+            <span>{{ task.status }}</span>
+        </div>
+        <div class="detail-item">
+            <label>Assigned To:</label>
+            <span>{{ task.assignedTo }}</span>
+        </div>
+        <div class="detail-item">
+            <label>Created At:</label>
+            <span>{{ task.createdAt ? task.createdAt|date('Y-m-d H:i') : 'N/A' }}</span>
+        </div>
+        <div class="detail-item">
+            <label>Updated At:</label>
+            <span>{{ task.updatedAt ? task.updatedAt|date('Y-m-d H:i') : 'N/A' }}</span>
+        </div>
+        <div class="detail-item">
+            <label>Completed:</label>
+            <span>{{ task.isCompleted ? 'Yes' : 'No' }}</span>
+        </div>
+        <a href="{{ path('tasks_index') }}" class="back-button">Back to Task List</a>
+    </div>
 {% endblock %}

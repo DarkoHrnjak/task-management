@@ -1,19 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Task List{% endblock %}
-
 {% block body %}
-    <h1>Task List</h1>
-    <a href="{{ path('task_new') }}">Create New Task</a>
-    <ul>
-        {% for task in tasks %}
-            <li>
-                <a href="{{ path('task_show', {id: task.id}) }}">{{ task.title }}</a>
-                - <a href="{{ path('task_edit', {id: task.id}) }}">Edit</a>
-                - <a href="{{ path('task_delete', {id: task.id}) }}" onclick="return confirm('Are you sure?')">Delete</a>
-            </li>
-        {% else %}
-            <li>No tasks available</li>
-        {% endfor %}
-    </ul>
+    <div class="container mt-5">
+        <h1 class="mb-4">Task List</h1>
+        <a href="{{ path('task_new') }}" class="btn btn-success mb-3">Create New Task</a>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Due Date</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Assigned To</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for task in tasks %}
+                <tr>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.description }}</td>
+                    <td>{{ task.dueDate ? task.dueDate|date('Y-m-d') : 'N/A' }}</td>
+                    <td>{{ task.priority }}</td>
+                    <td>{{ task.status }}</td>
+                    <td>{{ task.assignedTo }}</td>
+                    <td>
+                        <a href="{{ path('task_show', {'id': task.id}) }}" class="btn btn-info btn-sm">View</a>
+                        <a href="{{ path('task_edit', {'id': task.id}) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{{ path('task_delete', {'id': task.id}) }}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7" class="text-center">No tasks found.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ path('homepage') }}" class="btn btn-secondary">Back to Home</a>
+
+    </div>
 {% endblock %}

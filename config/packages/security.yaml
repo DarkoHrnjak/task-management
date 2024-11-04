@@ -22,10 +22,10 @@ security:
             # Enable form login for the main firewall
             form_login:
                 login_path: login     # Route for the login form
-                check_path: login_check # A separate route to handle login submissions
+                check_path: login # A separate route to handle login submissions
                 default_target_path: homepage  # Redirect after login (optional)
-                username_parameter: email  # Field used to log in (email in this case)
-                password_parameter: password
+                username_parameter: _email  # Field used to log in (email in this case)
+                password_parameter: _password
                 enable_csrf: true
 
             logout:
@@ -34,8 +34,8 @@ security:
 
     access_control:
         # Allow anonymous access to the login page
-        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        # Allow access to the homepage for both authenticated and anonymous users
-        - { path: ^/$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login$, roles: PUBLIC_ACCESS }
         # Require authentication for all other pages
         - { path: ^/, roles: ROLE_USER }
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_USER]

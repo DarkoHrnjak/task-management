@@ -1,6 +1,6 @@
-<form action="{{ path('login_check') }}" method="post"> {# Correct the action to point to the login_check route #}
+<form action="{{ path('login') }}" method="post"> {# Correct the action to point to the login_check route #}
     <label for="email">Email:</label>
-    <input type="text" id="email" name="_username" value="{{ last_username }}" required> {# Change name to "_username" as per Symfony convention #}
+    <input type="text" id="email" name="_email" value="{{ last_username }}" required> {# Change name to "_username" as per Symfony convention #}
 
     <label for="password">Password:</label>
     <input type="password" id="password" name="_password" required> {# Change name to "_password" as per Symfony convention #}

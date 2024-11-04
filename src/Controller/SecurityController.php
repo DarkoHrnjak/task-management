@@ -16,7 +16,7 @@ class SecurityController extends AbstractController
 	public function login(AuthenticationUtils $authenticationUtils): Response
 	{
 		// Redirect authenticated users to the homepage if they’re not already there
-		if ($this->getUser() && $this->getRequest()->getPathInfo() !== '/') {
+		if ($this->getUser()) {
 			return $this->redirectToRoute('homepage');
 		}
 

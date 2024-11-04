@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TaskRepository::class)]
 #[Broadcast]
+#[ORM\HasLifecycleCallbacks]
 class Task
 {
     #[ORM\Id]
@@ -19,8 +20,8 @@ class Task
     private ?int $id = null;
 
 	#[ORM\Column(length: 255)]
-	#[Assert\NotBlank(message: 'The title cannot be empty')]
-	private ?string $title = null;
+         	#[Assert\NotBlank(message: 'The title cannot be empty')]
+         	private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
@@ -29,11 +30,11 @@ class Task
     private ?DateTimeImmutable $dueDate = null;
 
 	#[ORM\Column(nullable: true, options: ['default' => 1])]
-	private ?int $priority = 1;
+         	private ?int $priority = 1;
 
 	#[ORM\Column(length: 50)]
-	#[Assert\Choice(choices: ['pending', 'in progress', 'completed'], message: 'Invalid status')]
-	private ?string $status = 'pending';
+         	#[Assert\Choice(choices: ['pending', 'in progress', 'completed'], message: 'Invalid status')]
+         	private ?string $status = 'pending';
 
     #[ORM\Column(length: 255)]
     private ?string $assignedTo = null;
@@ -43,6 +44,9 @@ class Task
 
     #[ORM\Column]
     private ?DateTimeImmutable $updatedAt = null;
+
+    #[ORM\Column]
+    private ?bool $isCompleted = null;
 
     public function getId(): ?int
     {
@@ -146,15 +150,28 @@ class Task
     }
 
 	#[ORM\PrePersist]
-	public function onPrePersist(): void
-	{
-		$this->createdAt = new \DateTimeImmutable();
-		$this->updatedAt = new \DateTimeImmutable();
-	}
+    public function onPrePersist(): void
+    {
+        $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
+    }
 
 	#[ORM\PreUpdate]
-	public function onPreUpdate(): void
-	{
-		$this->updatedAt = new \DateTimeImmutable();
-	}
+    public function onPreUpdate(): void
+    {
+        $this->updatedAt = new \DateTimeImmutable();
+    }
+
+    public function isCompleted(): ?bool
+    {
+        return $this->isCompleted;
+    }
+
+    public function setCompleted(bool $isCompleted): static
+    {
+        $this->isCompleted = $isCompleted;
+
+        return $this;
+    }
+
 }
