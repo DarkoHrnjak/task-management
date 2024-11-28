@@ -1,9 +1,47 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Edit Task{% endblock %}
+
 {% block body %}
-    <h1>Edit Task</h1>
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">Save changes</button>
-    {{ form_end(form) }}
+    <div class="task-edit-page">
+        <div class="task-edit-card">
+            <h1>Edit Task</h1>
+            {{ form_start(form, { 'attr': { 'class': 'edit-form' } }) }}
+            <div class="form-group">
+                {{ form_label(form.title) }}
+                {{ form_widget(form.title, { 'attr': { 'class': 'form-control' } }) }}
+                {{ form_errors(form.title) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.description) }}
+                {{ form_widget(form.description, { 'attr': { 'class': 'form-control textarea' } }) }}
+                {{ form_errors(form.description) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.dueDate) }}
+                {{ form_widget(form.dueDate, { 'attr': { 'class': 'form-control' } }) }}
+                {{ form_errors(form.dueDate) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.priority) }}
+                {{ form_widget(form.priority, { 'attr': { 'class': 'form-control' } }) }}
+                {{ form_errors(form.priority) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.status) }}
+                {{ form_widget(form.status, { 'attr': { 'class': 'form-control' } }) }}
+                {{ form_errors(form.status) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.assignedTo) }}
+                {{ form_widget(form.assignedTo, { 'attr': { 'class': 'form-control' } }) }}
+                {{ form_errors(form.assignedTo) }}
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-save">Save Changes</button>
+                <a href="{{ path('tasks_index') }}" class="btn btn-cancel">Cancel</a>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}

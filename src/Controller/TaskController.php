@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Task;
 use App\Form\TaskType;
+use App\Form\TaskFilterType;
 use App\Repository\TaskRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,16 +15,46 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class TaskController extends AbstractController
 {
-    #[Route('/tasks', name: 'tasks_index', methods: ['GET'])]
-    public function index(TaskRepository $taskRepository): Response
-    {
-        $tasks = $taskRepository->findAll();
-        return $this->render('task/index.html.twig', [
-            'tasks' => $tasks,
-        ]);
-    }
+	#[Route('/tasks', name: 'tasks_index', methods: ['GET', 'POST'])]
+	public function index(Request $request, TaskRepository $taskRepository): Response
+	{
+		// Create the filter form
+		$form = $this->createForm(TaskFilterType::class);
+		$form->handleRequest($request);
 
-    #[Route('/tasks/new', name: 'task_new', methods: ['GET', 'POST'])]
+		// Default query to fetch all tasks
+		$queryBuilder = $taskRepository->createQueryBuilder('t');
+
+		if ($form->isSubmitted() && $form->isValid()) {
+			$data = $form->getData();
+
+			// Apply filters based on form data
+			if (!empty($data['title'])) {
+				$queryBuilder->andWhere('t.title LIKE :title')
+							 ->setParameter('title', '%' . $data['title'] . '%');
+			}
+
+			if (!empty($data['status'])) {
+				$queryBuilder->andWhere('t.status = :status')
+							 ->setParameter('status', $data['status']);
+			}
+
+			if (!empty($data['priority'])) {
+				$queryBuilder->andWhere('t.priority = :priority')
+							 ->setParameter('priority', $data['priority']);
+			}
+		}
+
+		$tasks = $queryBuilder->getQuery()->getResult();
+
+		return $this->render('task/index.html.twig', [
+			'tasks' => $tasks,
+			'filterForm' => $form->createView(),
+		]);
+	}
+
+
+	#[Route('/tasks/new', name: 'task_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $task = new Task();
@@ -80,4 +111,5 @@ class TaskController extends AbstractController
             'task' => $task,
         ]);
     }
+
 }

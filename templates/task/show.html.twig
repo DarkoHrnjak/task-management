@@ -1,42 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Task Details{% endblock %}
+{% block title %}View Task{% endblock %}
 
 {% block body %}
-    <div class="task-detail">
-        <h2>Task: {{ task.title }}</h2>
-        <div class="detail-item">
-            <label>Description:</label>
-            <span>{{ task.description }}</span>
+    <div class="task-view-container">
+        <div class="task-card">
+            <h1>{{ task.title }}</h1>
+            <p class="description">{{ task.description }}</p>
+
+            <div class="task-details">
+                <div class="detail">
+                    <strong>Status:</strong>
+                    <span class="status {{ task.status|lower }}">{{ task.status|capitalize }}</span>
+                </div>
+                <div class="detail">
+                    <strong>Priority:</strong> {{ task.priority }}
+                </div>
+                <div class="detail">
+                    <strong>Assigned To:</strong> {{ task.assignedTo }}
+                </div>
+                <div class="detail">
+                    <strong>Due Date:</strong>
+                    {{ task.dueDate ? task.dueDate|date('Y-m-d H:i') : 'No due date' }}
+                </div>
+                <div class="detail">
+                    <strong>Created At:</strong> {{ task.createdAt|date('Y-m-d H:i') }}
+                </div>
+                <div class="detail">
+                    <strong>Last Updated:</strong> {{ task.updatedAt|date('Y-m-d H:i') }}
+                </div>
+            </div>
+
+            <div class="task-actions">
+                <a href="{{ path('task_edit', { id: task.id }) }}" class="btn btn-primary">Edit Task</a>
+                <a href="{{ path('tasks_index') }}" class="btn btn-secondary">Back to Task List</a>
+            </div>
         </div>
-        <div class="detail-item">
-            <label>Due Date:</label>
-            <span>{{ task.dueDate ? task.dueDate|date('Y-m-d') : 'None' }}</span>
-        </div>
-        <div class="detail-item">
-            <label>Priority:</label>
-            <span>{{ task.priority }}</span>
-        </div>
-        <div class="detail-item">
-            <label>Status:</label>
-            <span>{{ task.status }}</span>
-        </div>
-        <div class="detail-item">
-            <label>Assigned To:</label>
-            <span>{{ task.assignedTo }}</span>
-        </div>
-        <div class="detail-item">
-            <label>Created At:</label>
-            <span>{{ task.createdAt ? task.createdAt|date('Y-m-d H:i') : 'N/A' }}</span>
-        </div>
-        <div class="detail-item">
-            <label>Updated At:</label>
-            <span>{{ task.updatedAt ? task.updatedAt|date('Y-m-d H:i') : 'N/A' }}</span>
-        </div>
-        <div class="detail-item">
-            <label>Completed:</label>
-            <span>{{ task.isCompleted ? 'Yes' : 'No' }}</span>
-        </div>
-        <a href="{{ path('tasks_index') }}" class="back-button">Back to Task List</a>
     </div>
 {% endblock %}

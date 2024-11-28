@@ -21,15 +21,18 @@ security:
 
             # Enable form login for the main firewall
             form_login:
-                login_path: login     # Route for the login form
-                check_path: login # A separate route to handle login submissions
+                login_path: app_login     # Route for the login form
+                check_path: app_login # A separate route to handle login submissions
                 default_target_path: homepage  # Redirect after login (optional)
                 username_parameter: _email  # Field used to log in (email in this case)
                 password_parameter: _password
                 enable_csrf: true
+                csrf_parameter: _csrf_token
+                csrf_token_id: authenticate
+
 
             logout:
-                path: logout
+                path: app_logout
                 target: homepage  # Redirect after logout (optional)
 
     access_control:

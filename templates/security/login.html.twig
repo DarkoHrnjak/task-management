@@ -1,16 +1,48 @@
-<form action="{{ path('login') }}" method="post"> {# Correct the action to point to the login_check route #}
-    <label for="email">Email:</label>
-    <input type="text" id="email" name="_email" value="{{ last_username }}" required> {# Change name to "_username" as per Symfony convention #}
+{% extends 'base.html.twig' %}
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="_password" required> {# Change name to "_password" as per Symfony convention #}
+{% block title %}Login{% endblock %}
 
-    {# CSRF token to protect the form #}
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+{% block body %}
+    <div class="login-container">
+        <div class="login-box">
+            <h1>Welcome Back!</h1>
+            <p>Please log in to access your tasks.</p>
 
-    <button type="submit">Log in</button>
+            {% if error %}
+                <div class="alert alert-danger">
+                    {% if error.messageKey == 'Invalid credentials.' %}
+                        Invalid email or password. Please try again.
+                    {% else %}
+                        {{ error.messageKey|trans(error.messageData, 'security') }}
+                    {% endif %}
+                </div>
+            {% endif %}
 
-    {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-</form>
+
+            <form action="{{ path('app_login') }}" method="post" class="login-form">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="_email" class="form-control" required autocomplete="email" placeholder="Enter your email">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="_password" class="form-control" required placeholder="Enter your password">
+                </div>
+
+                <!-- Add the CSRF token field -->
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Log in</button>
+                </div>
+            </form>
+
+            <p class="signup-text">
+                Don't have an account? <a href="#">Sign up</a>
+            </p>
+            <p><a href="#">Forgot your password?</a></p>
+        </div>
+    </div>
+{% endblock %}

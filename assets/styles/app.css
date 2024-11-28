@@ -198,3 +198,338 @@ input:focus, textarea:focus {
         padding: 10px;
     }
 }
+/* General Body Styling */
+body {
+    background: linear-gradient(135deg, #1e1e1e, #333);
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Login Container */
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+/* Login Box */
+.login-box {
+    background: #2c2c2c;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    padding: 30px;
+    text-align: center;
+}
+
+.login-box h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.login-box p {
+    font-size: 14px;
+    color: #bbbbbb;
+    margin-bottom: 20px;
+}
+
+/* Form */
+.login-form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #bbbbbb;
+    display: block;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    background: #444;
+    color: #ffffff;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.form-control:focus {
+    background: #555;
+    outline: none;
+    box-shadow: 0 0 8px #007bff;
+}
+
+/* Login Button */
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.btn-login:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+}
+
+/* Additional Links */
+.additional-links {
+    margin-top: 20px;
+}
+
+.additional-links p {
+    font-size: 14px;
+    color: #bbbbbb;
+}
+
+.additional-links a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.additional-links a:hover {
+    color: #00aaff;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .login-box {
+        padding: 20px;
+    }
+
+    .btn-login {
+        font-size: 14px;
+    }
+}
+/* Task View Page Styling */
+.task-view-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+    background-color: #1c1c1c; /* Dark Gray Background */
+    min-height: 100vh;
+}
+
+.task-card {
+    background-color: #2b2b2b;
+    color: #f5f5f5;
+    border-radius: 10px;
+    padding: 30px;
+    width: 100%;
+    max-width: 700px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    font-family: 'Arial', sans-serif;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-header h1 {
+    font-size: 28px;
+    margin: 0;
+    border-bottom: 2px solid #444;
+    padding-bottom: 10px;
+    flex-grow: 1;
+}
+
+.status-badge {
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: capitalize;
+}
+
+.status-badge.pending {
+    background-color: #ff9800;
+}
+
+.status-badge.in-progress {
+    background-color: #2196f3;
+}
+
+.status-badge.completed {
+    background-color: #4caf50;
+}
+
+.card-content {
+    margin-bottom: 20px;
+}
+
+.description {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    border-left: 4px solid #555;
+    padding-left: 10px;
+    color: #ddd;
+}
+
+.details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    font-size: 14px;
+}
+
+.details div {
+    background-color: #3b3b3b;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.priority {
+    color: #ff5722;
+    font-weight: bold;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.card-actions .btn {
+    padding: 12px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.btn-edit {
+    background-color: #4caf50;
+}
+
+.btn-edit:hover {
+    background-color: #45a049;
+}
+
+.btn-back {
+    background-color: #2196f3;
+}
+
+.btn-back:hover {
+    background-color: #1976d2;
+}
+/* Edit Task Page Styling */
+.task-edit-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+    background-color: #1c1c1c; /* Dark Gray Background */
+    min-height: 100vh;
+}
+
+.task-edit-card {
+    background-color: #2b2b2b;
+    color: #f5f5f5;
+    border-radius: 10px;
+    padding: 30px;
+    width: 100%;
+    max-width: 700px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    font-family: 'Arial', sans-serif;
+}
+
+.task-edit-card h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 2px solid #444;
+    padding-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #bbb;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.form-group .form-control {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: #3b3b3b;
+    color: #f5f5f5;
+    font-size: 14px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.form-group .form-control:focus {
+    outline: none;
+    background-color: #555;
+    color: #fff;
+}
+
+.form-group .textarea {
+    height: 120px;
+    resize: none;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 12px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.btn-save {
+    background-color: #4caf50;
+}
+
+.btn-save:hover {
+    background-color: #45a049;
+}
+
+.btn-cancel {
+    background-color: #ff5722;
+}
+
+.btn-cancel:hover {
+    background-color: #e64a19;
+}
